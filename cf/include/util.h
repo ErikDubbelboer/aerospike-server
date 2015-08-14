@@ -160,6 +160,22 @@ cf_digest_compare( cf_digest *d1, cf_digest *d2 )
 }
 #endif
 
+/* cf_strcount
+ * Count the number of non-overlapping instances of sep in s */
+static inline int
+cf_strcount(const char* s, const char* sep)
+{
+    int l = strlen(sep);
+    int count = 0;
+
+    while ((s = strstr(s, sep))) {
+        count++;
+        s += l;
+    }
+
+    return count;
+}
+
 // Sorry, too lazy to create a whole new file for just one function
 #define CF_NODE_UNSET (0xFFFFFFFFFFFFFFFF)
 typedef uint64_t cf_node;
